@@ -10,6 +10,7 @@ import * as $hihihi from "./routes/hihihi.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $CustomHeader from "./islands/CustomHeader.tsx";
 import * as $HiButton from "./islands/HiButton.tsx";
+import * as $HiForm from "./islands/HiForm.tsx";
 import * as $SearchBar from "./islands/SearchBar.tsx";
 import * as $start from "./islands/start.tsx";
 import { type Manifest } from "$fresh/server.ts";
@@ -26,6 +27,7 @@ const manifest = {
   islands: {
     "./islands/CustomHeader.tsx": $CustomHeader,
     "./islands/HiButton.tsx": $HiButton,
+    "./islands/HiForm.tsx": $HiForm,
     "./islands/SearchBar.tsx": $SearchBar,
     "./islands/start.tsx": $start,
   },
