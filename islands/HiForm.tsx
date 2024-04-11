@@ -1,44 +1,42 @@
 import { FunctionComponent } from "preact";
-import { useState } from "preact/hooks";
-import HiButton from "./HiButton.tsx";
+import { useSignal } from "@preact/signals";
 import Shower from "../components/Shower.tsx";
+import HiButton from "../islands/HiButton.tsx";
 
-const AgendaManager: FunctionComponent = () => {
-	const [name, setName] = useState<string>("");
-	const [secondName, setSecondName] = useState<string>("");
-
-	const validate = (name: string, secondName: string) => {
-		if (name == "" || secondName == "") {
-			return false;
-		}
-		return true;
-	}
+const HiForm: FunctionComponent = () => {
+	const SayHi = useSignal("");
+	const nombre = useSignal("");
+	const apellido = useSignal("");
 
 	return (
-		<div className="formBody">
-			<form className="formBox">
+		<div class="formBody">
+			<form class="formBox" method="get" target="/hihihi">
 				<h3>Say hi hi hi</h3>
 				<input
 					type="text"
 					name="nombre"
 					placeholder={"Name"}
-					onInput={(e) => setName(e.currentTarget.value)}
+					value={nombre}
+					onInput={(e) => nombre.value = e.currentTarget.value}
 				/>
-				<br/>
+				<br />
 				<input
 					type="text"
 					name="apellido"
 					placeholder={"Last name"}
-					onInput={(e) => setSecondName(e.currentTarget.value)}
+					value={apellido}
+					onInput={(e) => apellido.value = e.currentTarget.value}
 				/>
-				<br/>
-				<HiButton>
+				<br />
+				<HiButton SayHi={SayHi} nombre={nombre} apellido={apellido}>
 					Hi!
 				</HiButton>
 			</form>
-			{validate(name,secondName) && <Shower name={name} secondName={secondName} />}
+			<Shower
+				text={SayHi}
+			/>
 		</div>
 	);
 };
 
-export default AgendaManager;
+export default HiForm;
